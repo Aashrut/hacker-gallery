@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} Image Gallery {% endblock %}
+{% block body %}
+    {% with messages = get_flashed_messages() %}  
+        {% if messages %}  
+            {% for message in messages %}
+                <div class="alert alert-warning text-center" role="alert">
+                    <p class="my-3">{{ message }}</p>
+                </div>
+            {% endfor %}  
+        {% endif %}  
+    {% endwith %}
+    <div class="container">
+        <div class="row mt-5 mx-auto" style="width: fit-content;">
+            <a href="/new" class="btn btn-primary">Add New Image</a>
+        </div>
+        {% for i in range(0, images|length, 3) %}
+            <div class="row">
+                {% for j in range(i, i+3) %}
+                    {% if j < images|length %}
+                    <div class="col my-5">
+                        <div class="card mx-auto justify-content-center h-100" style="width: 18rem;">
+                            <img src="{{ images[j]['imgurl'] }}" class="card-img-top" style="max-height: 200px;" alt="{{ images[j]['imgname'] }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ images[j]['imgname'] }}</h5>
+                                <p class="card-text">{{ images[j]['imgdetails'] }}</p>
+                                <a href="/show/{{ images[j]['id'] }}" class="btn btn-primary">Show More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

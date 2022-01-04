@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Add New Image {% endblock %}
+{% block body %}
+    <div class="container my-5" style="max-width: 600px;">
+        <form action="/" method="post">
+            <div class="form-floating m-4">
+                <input type="text" id="imgname" name="imgname" class="form-control" placeholder="Image Name" required />
+                <label for="imgname" class="px-4">Image Name</label>
+            </div>
+            <div class="form-floating m-4">
+                <input type="url" id="imgurl" name="imgurl" class="form-control" placeholder="Image URL" required />
+                <label for="imgurl" class="px-4">Image URL</label>
+            </div>
+            <div class="form-floating m-4">
+                <textarea style="height: 150px" id="imgdetails" name="imgdetails" class="form-control" placeholder="Image Details" required></textarea>
+                <label for="imgdetails" class="px-4">Image Details</label>
+            </div>
+            <div class="m-4">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

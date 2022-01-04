@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %} {{ image['imgname'] }} {% endblock %}
+{% block body %}
+    <div class="container h-100 my-5" style="max-width: 1000px;">
+        <div class="card mb-3">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-6">
+                    <img src="{{ image['imgurl'] }}" class="img-fluid rounded-start" alt="{{ image['imgname'] }}">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ image['imgname'] }}</h5>
+                        <p class="card-text">{{ image['imgdetails'] }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid gap-3 d-md-flex mx-auto" style="width: fit-content;">
+            <a href="/{{ image['id'] }}/edit" class="btn btn-primary">Edit</a>
+            <button type="button" onclick="delete_img()" class="btn btn-primary">Delete</button>
+        </div>
+        <div class="mx-auto my-3" id="delete_msg" style="width: fit-content;"></div>
+        <script>
+            function delete_img() {
+                document.getElementById("delete_msg").innerHTML = "<p>Deleting Image...</p>"
+                let request = new XMLHttpRequest();
+                request.open("DELETE", "/delete/{{ image['id'] }}");
+                request.send();
+                setTimeout(function() {
+                    window.location.href = '/';
+                }, 1000);
+            }
+        </script>
+    </div>
+{% endblock %}

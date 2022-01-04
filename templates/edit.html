@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %} Edit Image {{ image['imgname'] }} {% endblock %}
+{% block body %}
+    <div class="container my-5" style="max-width: 600px;">
+        <form>
+            <div class="form-floating m-4">
+                <input type="text" id="imgname" name="imgname" class="form-control" placeholder="Image Name" value="{{ image['imgname'] }}" required />
+                <label for="imgname" class="px-4">Image Name</label>
+            </div>
+            <div class="form-floating m-4">
+                <input type="url" id="imgurl" name="imgurl" class="form-control" placeholder="Image URL" value="{{ image['imgurl'] }}" required />
+                <label for="imgurl" class="px-4">Image URL</label>
+            </div>
+            <div class="form-floating m-4">
+                <textarea style="height: 150px" id="imgdetails" name="imgdetails" class="form-control" placeholder="Image Details" required>{{ image['imgdetails'] }}</textarea>
+                <label for="imgdetails" class="px-4">Image Details</label>
+            </div>
+            <div class="m-4">
+                <button type="button" onclick="edit()" class="btn btn-primary">Make Changes</button>
+            </div>
+        </form>
+        <script>
+            function edit() {
+                let imgform = document.querySelector("form");
+                let request = new XMLHttpRequest();
+                request.open("PUT", "/{{ image['id'] }}/edit");
+                request.send(new FormData(imgform));
+                window.location.href = '/';
+            }
+        </script>
+    </div>
+{% endblock %}
