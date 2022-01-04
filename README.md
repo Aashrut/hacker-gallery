@@ -1,4 +1,4 @@
-# Link to Live Application
+# Link to Live Application hosted on Microsft Azure
 
 https://hacker-gallery.azurewebsites.net
 
