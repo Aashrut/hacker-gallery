@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block title %} Add New Image {% endblock %}
+{% block heading %}
+    <h1 class="text-center mt-5 display-5">Add New Image</h1>
+{% endblock %}
 {% block body %}
     <div class="container my-5" style="max-width: 600px;">
         <form action="/" method="post">
@@ -15,8 +18,9 @@
                 <textarea style="height: 150px" id="imgdetails" name="imgdetails" class="form-control" placeholder="Image Details" required></textarea>
                 <label for="imgdetails" class="px-4">Image Details</label>
             </div>
-            <div class="m-4">
+            <div class="d-grid gap-3 d-md-flex mx-auto" style="width: fit-content;"">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="/" class="btn btn-primary">Home</a>
             </div>
         </form>
     </div>

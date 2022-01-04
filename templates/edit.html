@@ -1,5 +1,8 @@
 {% extends "base.html" %}
-{% block title %} Edit Image {{ image['imgname'] }} {% endblock %}
+{% block title %} Edit Image: {{ image['imgname'] }} {% endblock %}
+{% block heading %}
+    <h1 class="text-center mt-5 display-5">Edit Image: {{ image['imgname'] }} </h1>
+{% endblock %}
 {% block body %}
     <div class="container my-5" style="max-width: 600px;">
         <form>
@@ -15,17 +18,22 @@
                 <textarea style="height: 150px" id="imgdetails" name="imgdetails" class="form-control" placeholder="Image Details" required>{{ image['imgdetails'] }}</textarea>
                 <label for="imgdetails" class="px-4">Image Details</label>
             </div>
-            <div class="m-4">
+            <div class="d-grid gap-3 d-md-flex mx-auto" style="width: fit-content;">
                 <button type="button" onclick="edit()" class="btn btn-primary">Make Changes</button>
+                <a href="/" class="btn btn-primary">Home</a>
             </div>
         </form>
+        <div class="mx-auto my-3" id="edit_msg" style="width: fit-content;"></div>
         <script>
             function edit() {
+                document.getElementById("edit_msg").innerHTML = "<p>Updating Image...</p>"
                 let imgform = document.querySelector("form");
                 let request = new XMLHttpRequest();
                 request.open("PUT", "/{{ image['id'] }}/edit");
                 request.send(new FormData(imgform));
-                window.location.href = '/';
+                setTimeout(function() {
+                    window.location.href = '/';
+                }, 1000);
             }
         </script>
     </div>

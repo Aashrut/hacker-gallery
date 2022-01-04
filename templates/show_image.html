@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block title %} {{ image['imgname'] }} {% endblock %}
+{% block heading %}
+    <h1 class="text-center mt-5 display-5">{{ image['imgname'] }}</h1>
+{% endblock %}
 {% block body %}
     <div class="container h-100 my-5" style="max-width: 1000px;">
         <div class="card mb-3">
@@ -18,6 +21,7 @@
         <div class="d-grid gap-3 d-md-flex mx-auto" style="width: fit-content;">
             <a href="/{{ image['id'] }}/edit" class="btn btn-primary">Edit</a>
             <button type="button" onclick="delete_img()" class="btn btn-primary">Delete</button>
+            <a href="/" class="btn btn-primary">Home</a>
         </div>
         <div class="mx-auto my-3" id="delete_msg" style="width: fit-content;"></div>
         <script>
